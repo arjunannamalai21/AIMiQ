@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMiQ · System Flowchart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0b0b0e 0%, #1a1a1f 100%);
+            color: #f5e7c8;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+        :root {
+            --gold-main: #d4af37;
+            --gold-soft: #f1d585;
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --gold-glow: rgba(212, 175, 55, 0.35);
+        }
+        .gold-text {
+            background: linear-gradient(140deg, #fbf5d7, #d4af37, #b8860b, #f1e19c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(20, 20, 26, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            border-radius: 28px;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.8), inset 0 0 20px rgba(212, 175, 55, 0.04);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-pad { padding: 2rem 2.5rem; }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--gold-soft);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            padding-bottom: 0.7rem;
+        }
+        .card-title i { color: var(--gold-main); font-size: 1.5rem; }
+        .header-section { text-align: center; margin-bottom: 2.5rem; }
+        .header-section h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .header-section p { color: #b8a887; font-size: 1.1rem; }
+        
+        /* Mermaid container */
+        .mermaid-container {
+            width: 100%;
+            overflow-x: auto;
+            background: rgba(12, 12, 16, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            min-width: 800px; /* Ensures flowchart is wide enough */
+        }
+
+        /* Download button */
+        .btn-container {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(110deg, #d4af37, #b8860b);
+            color: #17140b;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .card-pad { padding: 1.5rem; }
+            .header-section h1 { font-size: 2rem; }
+            .mermaid { min-width: 600px; }
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 1400px; margin: 0 auto;">
+        
+        <!-- HEADER -->
+        <div class="header-section">
+            <h1 class="gold-text"><i class="fas fa-project-diagram" style="margin-right: 15px;"></i>System Flowchart</h1>
+            <p>AIMiQ · On-Device AI Gaming Coach Architecture</p>
+        </div>
+
+        <!-- MAIN FLOWCHART CARD -->
+        <div class="glass-card card-pad">
+            <div class="card-title"><i class="fas fa-sitemap"></i> Full Data Flow & Architecture</div>
+            
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    flowchart TD
+
+                    %% =========================
+                    %% 🎮 SYSTEM FLOW
+                    %% =========================
+
+                    classDef gold fill:#17181D,stroke:#D4AF37,stroke-width:2px,color:#F5E7C8;
+                    classDef highlight fill:#24252C,stroke:#F1D585,stroke-width:3px,color:#FFEEC4;
+                    classDef ai fill:#15171C,stroke:#B58CFF,stroke-width:2px,color:#FFFFFF;
+                    classDef feature fill:#17181D,stroke:#D4AF37,stroke-width:2px,color:#FFEEC4;
+                    classDef storage fill:#211C0D,stroke:#D4AF37,stroke-width:2px,color:#FFEEC4;
+                    classDef final fill:#29220C,stroke:#F1D585,stroke-width:3px,color:#FFEEC4;
+
+
+                    %% =========================
+                    %% 1. HARDWARE
+                    %% =========================
+
+                    subgraph H["① 📱 iQOO HARDWARE LAYER"]
+                    direction LR
+
+                    CPU["⚡ Snapdragon 8 Gen 5<br/>High Performance Computing"]:::gold
+                    GPU["🎮 Adreno GPU<br/>Graphics Acceleration"]:::gold
+                    NPU["🧠 Hexagon NPU<br/>On-Device AI"]:::gold
+
+                    SCREEN["📱 Screen<br/>MediaProjection"]:::gold
+                    MIC["🎙️ Microphone<br/>Voice & Audio"]:::gold
+                    CAM["📷 Camera<br/>Environment & Expressions"]:::gold
+
+                    end
+
+
+                    %% =========================
+                    %% 2. PROCESSING
+                    %% =========================
+
+                    subgraph P["② ⚙️ DATA PROCESSING LAYER"]
+                    direction LR
+
+                    CAP["🎥 SCREEN CAPTURE<br/><br/>Real-Time Game Frames<br/>MediaProjection API"]:::highlight
+
+                    CV["👁️ OPENCV PROCESSING<br/><br/>• Frame Preprocessing<br/>• Object Detection<br/>• Crosshair Tracking<br/>• Game Event Extraction"]:::highlight
+
+                    TFL["🔷 TENSORFLOW LITE<br/><br/>GPU / NPU Delegates<br/>Low-Latency Inference<br/>On-Device Processing"]:::highlight
+
+                    CAP --> CV
+                    CV --> TFL
+
+                    end
+
+
+                    %% =========================
+                    %% 3. AI MODELS
+                    %% =========================
+
+                    subgraph M["③ 🤖 ON-DEVICE AI MODELS"]
+                    direction LR
+
+                    YOLO["🎯 YOLOv8-NANO<br/><br/>6 MB<br/>Players • Enemies • Weapons • Objects"]:::ai
+
+                    AIM["🎯 AIMNET<br/><br/>3 MB<br/>Aim Patterns • Accuracy"]:::ai
+
+                    STRAT["🧠 STRATEGYNET<br/><br/>8 MB<br/>Rotation • Positioning • Decisions"]:::ai
+
+                    EMO["🧘 EMOTIONNET<br/><br/>4 MB<br/>Stress • Focus • Emotional State"]:::ai
+
+                    end
+
+
+                    %% =========================
+                    %% 4. BUSINESS LOGIC
+                    %% =========================
+
+                    subgraph B["④ 📊 INTELLIGENCE / BUSINESS LOGIC"]
+                    direction LR
+
+                    GAME["📈 GAME ANALYSIS<br/><br/>Performance Metrics<br/>Mistake Detection<br/>Skill Pattern Analysis"]:::gold
+
+                    STRATEGY["💡 STRATEGY AI<br/><br/>Map Awareness<br/>Tactical Recommendations<br/>Adaptive Learning"]:::gold
+
+                    MENTAL["❤️ MENTAL HEALTH AI<br/><br/>Stress Detection<br/>Focus Monitoring<br/>Wellbeing Guidance"]:::gold
+
+                    end
+
+
+                    %% =========================
+                    %% 5. 7 FEATURES
+                    %% =========================
+
+                    subgraph F["⑤ 🏆 7 KEY FEATURES"]
+                    direction LR
+
+                    F1["① SENSITIVITY CONTROL<br/><br/>Find Your Perfect Settings"]:::feature
+
+                    F2["② AIM PRECISION<br/><br/>Improve Accuracy"]:::feature
+
+                    F3["③ GAME STRATEGY<br/><br/>Smarter Rotations & Decisions"]:::feature
+
+                    F4["④ GUN SELECTION<br/><br/>Choose the Right Gun"]:::feature
+
+                    F5["⑤ OPPONENT APPROACH<br/><br/>Learn Enemy Behavior"]:::feature
+
+                    F6["⑥ DEFENSE METHODS<br/><br/>Play Safer & Survive Longer"]:::feature
+
+                    F7["⑦ MENTAL HEALTH CONTROL<br/><br/>Manage Stress & Stay Focused"]:::feature
+
+                    end
+
+
+                    %% =========================
+                    %% 6. STORAGE
+                    %% =========================
+
+                    subgraph S["⑥ 💾 SECURE DATA STORAGE"]
+                    direction LR
+
+                    DB[("🗄️ ROOM DATABASE<br/><br/>Game Sessions<br/>Performance History<br/>User Progress")]:::storage
+
+                    SEC[("🔒 ENCRYPTED SHARED PREFS<br/><br/>User Settings<br/>Secure Preferences<br/>Privacy First")]:::storage
+
+                    end
+
+
+                    %% =========================
+                    %% 7. PRESENTATION
+                    %% =========================
+
+                    subgraph V["⑦ 🖥️ PRESENTATION LAYER"]
+                    direction LR
+
+                    HUD["🎮 NON-INTRUSIVE HUD<br/><br/>Real-Time Tips<br/>Minimal & Adaptive<br/>Doesn't Block Gameplay"]:::gold
+
+                    FEEDBACK["🎯 ACTIONABLE FEEDBACK<br/><br/>Personalized Drills<br/>Improvement Suggestions<br/>Next Steps"]:::gold
+
+                    PROGRESS["📈 PROGRESS TRACKING<br/><br/>Skill Improvement<br/>Performance Graphs<br/>Long-Term Growth"]:::gold
+
+                    end
+
+
+                    %% =========================
+                    %% FINAL OUTCOME
+                    %% =========================
+
+                    FINAL["🏆 BETTER INSIGHTS  →  BETTER PLAYERS  →  HEALTHIER GAMERS"]:::final
+
+
+                    %% =========================
+                    %% HARDWARE → PROCESSING
+                    %% =========================
+
+                    SCREEN --> CAP
+                    CPU --> TFL
+                    GPU --> TFL
+                    NPU --> TFL
+
+                    MIC --> EMO
+                    CAM --> EMO
+
+
+                    %% =========================
+                    %% PROCESSING → MODELS
+                    %% =========================
+
+                    TFL --> YOLO
+                    TFL --> AIM
+                    TFL --> STRAT
+                    TFL --> EMO
+
+
+                    %% =========================
+                    %% MODELS → LOGIC
+                    %% =========================
+
+                    YOLO --> GAME
+                    AIM --> GAME
+
+                    STRAT --> STRATEGY
+
+                    EMO --> MENTAL
+
+
+                    %% =========================
+                    %% LOGIC → FEATURES
+                    %% =========================
+
+                    GAME --> F1
+                    GAME --> F2
+
+                    STRATEGY --> F3
+                    STRATEGY --> F4
+                    STRATEGY --> F5
+                    STRATEGY --> F6
+
+                    MENTAL --> F7
+
+
+                    %% =========================
+                    %% FEATURES → STORAGE
+                    %% =========================
+
+                    F1 --> DB
+                    F2 --> DB
+                    F3 --> DB
+                    F4 --> DB
+                    F5 --> DB
+                    F6 --> DB
+                    F7 --> SEC
+
+
+                    %% =========================
+                    %% STORAGE → PRESENTATION
+                    %% =========================
+
+                    DB --> HUD
+                    DB --> PROGRESS
+                    SEC --> FEEDBACK
+
+                    HUD --> FEEDBACK
+
+
+                    %% =========================
+                    %% FINAL OUTCOME
+                    %% =========================
+
+                    FEEDBACK --> FINAL
+                    PROGRESS --> FINAL
+                    HUD --> FINAL
+                </div>
+            </div>
+        </div>
+
+       
+
+    </div>
+
+    <!-- Load Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // Initialize Mermaid with gold theme
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                background: '#121216',
+                primaryColor: '#17181D',
+                primaryTextColor: '#F5E7C8',
+                primaryBorderColor: '#D4AF37',
+                lineColor: '#D4AF37',
+                secondaryColor: '#24252C',
+                tertiaryColor: '#211C0D',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px',
+                edgeLabelBackground: '#17181D'
+            }
+        });
+
+
+        
+    </script>
+</body>
+</html>
